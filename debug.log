@@ -1,0 +1,23 @@
+Invalid HTTP_HOST header: 'www.hotkey.tv'. You may need to add u'www.hotkey.tv' to ALLOWED_HOSTS.
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ubuntu/venv/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 184, in get_response
+    callback, param_dict = resolver.resolve400()
+  File "/home/ubuntu/venv/local/lib/python2.7/site-packages/django/core/urlresolvers.py", line 394, in resolve400
+    return self._resolve_special('400')
+  File "/home/ubuntu/venv/local/lib/python2.7/site-packages/django/core/urlresolvers.py", line 385, in _resolve_special
+    callback = getattr(self.urlconf_module, 'handler%s' % view_type, None)
+  File "/home/ubuntu/venv/local/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/hotkey.tv/hotkey_tv/urls.py", line 3, in <module>
+    import hotkey_tv.views
+  File "/home/ubuntu/hotkey.tv/hotkey_tv/views.py", line 6, in <module>
+    import requests # for setting cookies
+  File "/home/ubuntu/venv/local/lib/python2.7/site-packages/requests/__init__.py", line 84, in <module>
+    from urllib3.contrib import pyopenssl
+  File "/home/ubuntu/venv/local/lib/python2.7/site-packages/urllib3/contrib/pyopenssl.py", line 42, in <module>
+    ssl.PROTOCOL_SSLv3: OpenSSL.SSL.SSLv3_METHOD,
+AttributeError: 'module' object has no attribute 'PROTOCOL_SSLv3'
+Invalid HTTP_HOST header: 'www.hotkey.tv'. You may need to add u'www.hotkey.tv' to ALLOWED_HOSTS.

@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 
 #import requests
 
-from charlievannorman.util import *
+from hotkey_tv.util import *
 def simple_page(template):
 	def handler(request):
 		return renderWithNav(request, template)
