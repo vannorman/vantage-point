@@ -1,6 +1,6 @@
 {% load static %}
 	<head>
-		<title> Charlie Van Norman </title>
+		<title> HOTKEY.TV </title>
 	
 	<meta name="google-site-verification" content="KPrCTIkFg3RCIWPoYvQO3QBnFcEqKflrEQI_6ztrwzE" />
 	{% block styles %}
@@ -38,103 +38,8 @@
 
 <div id="container">
 	<div id="top">
-		<div class="pic"></div>
 		<div class="title">
-			<h1> Charlie Van Norman</h1>
-		</div>
-	</div>
-	<div id="tabs">
-		<ul>
-			<li class="tabButton selected">Hello</li>
-			<li class="tabButton">Portfolio</li>
-			<li class="tabButton">Resume</li>
-			<li class="tabButton">Contact</li>
-		</ul>
-		<div id="tabsContainer">
-
-			<!-- tabs content begins here -->
-			<div id="tabAbout" class='tab'>
-				I am a game designer and software developer. I work best with small, agile teams (e.g. startups).
-				
-					<p>
-					Some spaces I am interested in:
-					<ul>
-						<li> 3D interactive applications</li>
-						<li> Video games and Ed-tech </li>
-						<li> Biotech and chemistry simulations </li>
-						<li> Machine Learning / Deep learning </li>
-						<li> Real Estate / Architecture design </li>
-						<li> Self driving boats </li>
-					</ul>
-				</p>
-				<p> Other stuff I enjoy doing: 
-					<ul>
-						<li> Playing Go (Rank ~5kyu)</li>
-						<li> Composing and playing music, mainly Keyboard and Guitar </li>
-						<li> Climbing & Bouldering </li>
-					</ul>
-				</p>
-						
-			
-
-			</div>
-			<div id="tabPortfolio" class='tab'>
-				<ul>
-					{% for item in portfolio %}
-						<li class='item'>
-							<div class="top1">
-								<div class='title'><a href={{item.link}} target="_blank"> {{ item.title }} </a></div>
-								<div class='subtitle'> {{ item.subtitle }}	</div>
-							</div>
-							<div class="top2">
-								<div class="year">{{item.year}}</div>
-								<div class="position">{{item.position}}</div>
-								
-							</div>
-							<div class="description">
-								{{ item.description|safe }}
-							</div>
-							<div class="responsibilities">	
-								<div class="head">
-									My responsibilities:
-								</div>
-								<ul>
-									{% for d in item.responsibilities %}
-										<li> {{ d }} </li>
-									{% endfor %}
-								</ul>
-							</div>
-							<ul class='imageList'>
-								{% for video in item.videos %}
-								<li>
-									<a href=javascript:void(0) onclick=javascript:VIMEO_OVERLAY.Show('{{video.source}}'); target='_blank' name='{{image}}'>
-										<div class='img'  style='background-image:url("/static/img/{{ video.image }}");' ></div>
-										<div class='videoPlayIcon'></div>
-									<div class='imageHover'></div>
-									</a>
-								</li>
-								{% endfor %}
-								
-								{% for image in item.images %}
-								<li>
-									<a href=javascript:void(0) onclick=javascript:IMAGE_VIEWER.Show(this); target='_blank' name='{{image}}'>
-										<div class='img'  style='background-image:url("/static/img/{{ image }}");' ></div>
-									<div class='imageHover'></div>
-									</a>
-								</li>
-								{% endfor %}
-							</ul>
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
-			<div id="tabResume" class='tab'>
-				<div class='img'></div>
-			</div>
-			<div id="tabContact" class='tab'>
-				Email: <a href="mailto:me@hotkey_tv.com?subject=Hi!" target="_blank">me@hotkey_tv.com</a>
-			</div>
-
+			<h1> Hotkey.tv</h1>
 		</div>
 	</div>
 </div>
