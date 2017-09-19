@@ -33,7 +33,6 @@ STATICFILES_DIRS = [
 ]
 
 
-ALLOWED_HOSTS = []
 
 
 # Application definition

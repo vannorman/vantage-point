@@ -1,13 +1,13 @@
-{% load static %}
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+{% load static from staticfiles %}
 	<head>
 		<title> HOTKEY.TV </title>
 	
 	<meta name="google-site-verification" content="KPrCTIkFg3RCIWPoYvQO3QBnFcEqKflrEQI_6ztrwzE" />
 	{% block styles %}
-	
-		<link rel='stylesheet' href="/static/css/home.css"|add:version|safe %} type='text/css'>
-		<link rel='stylesheet' href="/static/css/imageviewer.css"|add:version|safe %} type='text/css'>
-		<link rel='stylesheet' href="/static/css/vimeoPopup.css"|add:version|safe %} type='text/css'>
+		<!-- lol why dis so hard.. arrangement of static, quotes, { % % }, and version|safe -->
+		<link rel='stylesheet' href="{% static "css/home.css" %}?{{ version|safe }}" type='text/css'>	 
+		<link rel='stylesheet' href="{% static "css/vimeoPopup.css" %}?{{ version|safe }}" type='text/css'>	
 
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,600,800" rel="stylesheet">
 	{% endblock %}
@@ -18,8 +18,12 @@
 		<script src='static/js/imageviewer.js'|add:version|safe ></script>
 		<script src='static/js/vimeoPopup.js'|add:version|safe ></script>
 		<script src='static/js/scrollcontrol.js'|add:version|safe ></script>
+		<script src='static/js/three.min.js'|add:version|safe ></script>
+		<script src='static/js/demo.js'|add:version|safe ></script>
 	{% endblock %}
 	</head>
+
+
 <body>
 
 
