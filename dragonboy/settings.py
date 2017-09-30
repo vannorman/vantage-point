@@ -1,5 +1,5 @@
 """
-Django settings for hotkey_tv project.
+Django settings for dragonboy project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -25,7 +25,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'hotkey_tv/templates'),
+    os.path.join(BASE_DIR, 'dragonboy/templates'),
 )
 
 STATICFILES_DIRS = [
@@ -38,7 +38,7 @@ STATICFILES_DIRS = [
 # Application definition
 
 INSTALLED_APPS = (
-	'hotkey_tv',
+	'dragonboy',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,9 +57,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'hotkey_tv.urls'
+ROOT_URLCONF = 'dragonboy.urls'
 
-WSGI_APPLICATION = 'hotkey_tv.wsgi.application'
+WSGI_APPLICATION = 'dragonboy.wsgi.application'
 
 
 # Database
