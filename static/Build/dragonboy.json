@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "dragonboy.data.unityweb",
+"asmCodeUrl": "dragonboy.asm.code.unityweb",
+"asmMemoryUrl": "dragonboy.asm.memory.unityweb",
+"asmFrameworkUrl": "dragonboy.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#222C36"
+}
