@@ -12,8 +12,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,600,800" rel="stylesheet">
 
 		<!-- these two stylesheets are for UnityLodaer -->
-		<link rel="shortcut icon" href="/static/build/TemplateData/favicon.ico">
-		<link rel="stylesheet" href="/static/build/style.css">
+		<link rel="shortcut icon" href="/static/Build/TemplateData/favicon.ico">
+		<link rel="stylesheet" href="/static/Build/style.css">
 
 
 	{% endblock %}
@@ -31,9 +31,9 @@
 
 
 <body>
-	<!-- WebGL player requires references to the static build folder -->
-    <script src="/static/build/UnityLoader.js"></script>
-    <script src="/static/build/TemplateData/UnityProgress.js"></script>  
+	<!-- WebGL player requires references to the static Build folder -->
+    <script src="/static/Build/UnityLoader.js"></script>
+    <script src="/static/Build/TemplateData/UnityProgress.js"></script>  
     <script src="/static/js/scalecanvas.js"></script>  
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "/static/Build/dragonboy.json", {onProgress: UnityProgress});
