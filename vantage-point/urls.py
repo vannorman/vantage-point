@@ -1,14 +1,15 @@
 from django.conf.urls import *
+# import vantage_point.views
+# from vantage_point import views
 
-import dragonboy.views
 
 urlpatterns = [
     # Examples:
-    # url(r'^$', 'dragonboy.views.home', name='home'),
+    # url(r'^$', 'vantage_point.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
 
 
-	url(r'^$', dragonboy.views.home),
+	url(r'^$', vantage_point.views.home),
 
 ]

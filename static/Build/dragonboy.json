@@ -1,9 +1,9 @@
 {
 "TOTAL_MEMORY": 268435456,
-"dataUrl": "vantage-point.data.unityweb",
-"asmCodeUrl": "vantage-point.asm.code.unityweb",
-"asmMemoryUrl": "vantage-point.asm.memory.unityweb",
-"asmFrameworkUrl": "vantage-point.asm.framework.unityweb",
+"dataUrl": "vantage_point.data.unityweb",
+"asmCodeUrl": "vantage_point.asm.code.unityweb",
+"asmMemoryUrl": "vantage_point.asm.memory.unityweb",
+"asmFrameworkUrl": "vantage_point.asm.framework.unityweb",
 "splashScreenStyle": "Dark",
 "backgroundColor": "#222C36"
 }

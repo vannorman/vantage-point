@@ -26,8 +26,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.utils.encoding import smart_str
 
-from dragonboy.models import *
-from dragonboy.forms import *
+from vantage_point.models import *
+from vantage_point.forms import *
 
 def alphaencode(number, alphabet='123456789ABCDEFGHJKLMNPRTUVWXYZabcdefghjkmnopqrstuvwxyz'):
 	code = ''
@@ -113,7 +113,7 @@ def emailtest():
 	print >>sys.stderr, str(boto.config.get_value('Credentials', 'aws_access_key_id')) 
 
 	# Potential BOTO problem if you get "404" somewhere before "no authenticator found" -- boto needs to find its ~/.boto config file, but django can't see ~/ folder here. Solution: Put boto [Credentials] into /etc/boto.cfg, which Django can find.
-	send_mail('s2','m2','robot@dragonboy.com',['ccvannorman@gmail.com'])
+	send_mail('s2','m2','robot@vantage_point.com',['ccvannorman@gmail.com'])
 
 
 

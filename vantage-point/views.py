@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 
 #import requests
 
-from dragonboy.util import *
+from vantage_point.util import *
 def simple_page(template):
 	def handler(request):
 		return renderWithNav(request, template)
