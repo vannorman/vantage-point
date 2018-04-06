@@ -25,10 +25,27 @@ def simple_page(template):
 		return renderWithNav(request, template)
 	return handler
 
+def verify_account(request, code):
+	verified_user_codes = [
+		'b0ss',
+		'vp086', # testing
+		'proto-tastic', # testing2
+		'annie-and-bj', # Mar 21, 2018
+		'RaiseTheBar', #RipStandard - Apr 6 2018
+		'GoldStandard', #Within - Apr 6 2018
+		# todo auto week expire
+
+	]
+		
+	if code in verified_user_codes:
+		return HttpResponse("OK")
+	else:
+		return HttpResponse("Failed")
+
+
 
 def home(request):
 	obj = {}
-	obj['threeCanvas'] = {} # hmm
 	return renderWithNav(request,'home.html', obj)
 
 def file_a(request):

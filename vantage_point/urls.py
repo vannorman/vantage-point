@@ -1,5 +1,5 @@
 from django.conf.urls import *
-# import vantage_point.views
+import vantage_point.views
 # from vantage_point import views
 
 
@@ -9,7 +9,6 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
 
-
 	url(r'^$', vantage_point.views.home),
-
+	url(r'^verifyaccount/(.*)/$', vantage_point.views.verify_account),
 ]

@@ -1,0 +1,28 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+{% load static from staticfiles %}
+	<head>
+		<title> Vantage Point </title>
+	
+	<meta name="google-site-verification" content="KPrCTIkFg3RCIWPoYvQO3QBnFcEqKflrEQI_6ztrwzE" />
+	{% block styles %}
+		<!-- lol why dis so hard.. arrangement of static, quotes, { % % }, and version|safe -->
+		<link rel='stylesheet' href="{% static "css/home.css" %}?{{ version|safe }}" type='text/css'>	 
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,600,800" rel="stylesheet">
+
+
+
+	{% endblock %}
+
+	{% block scripts %}
+		<script src='{% static "js/jquery-1.11.0.min.js" %}'></script>
+	{% endblock %}
+	</head>
+
+
+<body>
+	<!-- WebGL player requires references to the static Build folder -->
+   	Hi 
+
+
+</body>
