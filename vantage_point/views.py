@@ -4,6 +4,7 @@ import urllib
 import datetime
 import re 
 import requests # for setting cookies
+import base64
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
@@ -26,22 +27,18 @@ def simple_page(template):
 	return handler
 
 def verify_account(request, code):
-	verified_user_codes = [
-		'b0ss',
-		'vp086', # testing
-		'proto-tastic', # testing2
-		'annie-and-bj', # Mar 21, 2018
-		'RaiseTheBar', #RipStandard - Apr 6 2018
-		'GoldStandard', #Within - Apr 6 2018
-		# todo auto week expire
-
-	]
-		
-	if code in verified_user_codes:
-		return HttpResponse("OK")
-	else:
-		return HttpResponse("Failed")
-
+	verified_user_codes = []
+	verified_user_codes.extend([
+	{'code':'b0ss', 'response' : 'OK', 'expire' : 'none'},
+	{'code':'RaiseTheBar', 'response' : 'OK_SKIP', 'user' : 'RipStandard', 'expire' : '04/09/2018 + 7'},
+	{'code':'GoldStandard', 'response' : 'OK_SKIP', 'user' : 'Within', 'expire' : '04/09/2018 + 7'},
+	])
+	
+	response = "Failed"	
+	for o in verified_user_codes:
+		if o['code'] == code:
+			response = o['response'] + "|" + str(verified_user_codes)		
+	return HttpResponse(response)
 
 
 def home(request):
