@@ -49,10 +49,14 @@
 					 function(response) {
 						if (response['success'] == true){
 							$('.error').html('');
+							$('#inner .code').hide();
+							$('#inner .submit').hide();
+							$('#inner .ready').show();
 
 	 					} else {
 							$('.error').html('Incorrect code. Please try again.');
-
+							 $('#inner input').focus();
+							$('#inner input').select();
 						}
 	 
 					});
@@ -75,9 +79,11 @@
 Welcome to the fully-immersive training program.
 <br />Enter your unique access code to begin.
 			
-			<input type="text" value="ENTER ACCESS CODE" />	
-				<div class='error'></div>
+			<input class='code' type="text" value="ENTER ACCESS CODE" />	
+				<span class='error'></span>
 			</div>
+			<div class="ready">Your experience is ready. <br />Mount your headset now.</div>
+			<a href=javascript:SubmitCode() class='submit'>Submit</a>
 		</div>
 			
 	</div>	

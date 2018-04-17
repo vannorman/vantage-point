@@ -5,7 +5,7 @@ import vantage_point.views
 
 urlpatterns = [
     # Examples:
-    url(r'^$', vantage_point.views.home, name='home'),
+    url(r'^$', vantage_point.views.start, name='home'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^verifyaccount/(.*)/$', vantage_point.views.verify_account),
