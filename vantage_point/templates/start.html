@@ -1,0 +1,90 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+{% load static from staticfiles %}
+	<head>
+		<title> Vantage Point </title>
+	
+	<meta name="google-site-verification" content="KPrCTIkFg3RCIWPoYvQO3QBnFcEqKflrEQI_6ztrwzE" />
+	{% block styles %}
+		<!-- lol why dis so hard.. arrangement of static, quotes, { % % }, and version|safe -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+		<link rel='stylesheet' href="{% static "css/start.css" %}?{{ version|safe }}" type='text/css'>	 
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,600,800" rel="stylesheet">
+
+
+
+	{% endblock %}
+
+	{% block scripts %}
+		<script src='{% static "js/jquery-1.11.0.min.js" %}'></script>
+		<script>
+			var csrf = "{{csrf}}";
+			var r;
+			var firstClick = false;
+			$(document).ready(function(){
+				$('#inner input').on('click',function(){
+					if (!firstClick){
+						firstClick = true;
+						$('#inner input').val('');
+						
+					}
+				});
+				$('#inner input').keydown(function (e){
+					if(e.keyCode == 13){
+						SubmitCode();
+					}
+
+				});
+			});
+
+			function SubmitCode(){
+				var code = $('#inner input').val();
+				$.post( 
+					"/verifycode/",
+					{
+						"csrfmiddlewaretoken" : csrf,
+						"code" : code, 
+					},
+				
+					 function(response) {
+						if (response['success'] == true){
+							$('.error').html('');
+
+	 					} else {
+							$('.error').html('Incorrect code. Please try again.');
+
+						}
+	 
+					});
+				}
+	
+				</script>
+
+
+	{% endblock %}
+	</head>
+
+
+<body>
+	<div class='overlay'>
+
+	<div id="right">
+		<div id="inner">
+			<div id="logo"></div>
+			<div class="welcome">
+Welcome to the fully-immersive training program.
+<br />Enter your unique access code to begin.
+			
+			<input type="text" value="ENTER ACCESS CODE" />	
+				<div class='error'></div>
+			</div>
+		</div>
+			
+	</div>	
+
+
+</div>
+	<!-- WebGL player requires references to the static Build folder -->
+
+
+</body>

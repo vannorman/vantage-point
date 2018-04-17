@@ -5,12 +5,14 @@ font-family: 'Open Sans', sans-serif;
 body {
 	
 	background-size:cover;
- background-repeat: no-repeat;
+	 background-repeat: no-repeat;
     background-attachment: fixed;
 
 }
 #container {
 	position:relative;
+	top:150px;
+	font-size:25px;
 	height:30px;
 	width:960px;
 	margin: 0 auto;

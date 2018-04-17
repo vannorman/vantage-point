@@ -23,33 +23,52 @@ from django.contrib.auth.decorators import login_required
 from vantage_point.util import *
 def simple_page(template):
 	def handler(request):
-		return renderWithNav(request, template)
+	    return renderWithNav(request, template)
 	return handler
 
-def verify_account(request, code):
-	verified_user_codes = []
-	verified_user_codes.extend([
-	{'code':'b0ss', 'response' : 'OK', 'expire' : 'none'},
-	{'code':'RaiseTheBar', 'response' : 'OK_SKIP', 'user' : 'RipStandard', 'expire' : '04/09/2018 + 7'},
-	{'code':'GoldStandard', 'response' : 'OK_SKIP', 'user' : 'Within', 'expire' : '04/09/2018 + 7'},
-	])
+verified_user_codes = []
+verified_user_codes.extend([
+    {'code':'b0ss', 'response' : 'OK', 'expire' : 'none'},
+    {'code':'RaiseTheBar', 'response' : 'OK_SKIP', 'user' : 'RipStandard', 'expire' : '04/09/2018 + 7'},
+    {'code':'GoldStandard', 'response' : 'OK_SKIP', 'user' : 'Within', 'expire' : '04/09/2018 + 7'},
+])
 	
-	response = "Failed"	
-	for o in verified_user_codes:
-		if o['code'] == code:
-			response = o['response'] + "|" + str(verified_user_codes)		
+def verify_account(request, code):
+
+    response = "Failed"	
+    for o in verified_user_codes:
+	if o['code'] == code:
+	    response = o['response'] + "|" + str(verified_user_codes)	
 	return HttpResponse(response)
 
+def verify_code(request):
+    if request.method == 'POST':
+        print str(request.POST)
+        code = request.POST['code']
+        # print "req:" + pretty_request(request) # request.POST['code']
+        for o in verified_user_codes:
+            if o['code'] == code:
+                return json_response({'success':True})
+                print "hi"
+        print "hello: "+code	
+        return json_response({'success':False})
+    else:
+        return HttpResponse("nope")
 
 def home(request):
-	obj = {}
-	return renderWithNav(request,'home.html', obj)
+    obj = {}
+    return render(request, "home.html", obj)
+
+
+def start(request):
+    obj = {}
+    return renderWithNav(request, "start.html", obj)
 
 def file_a(request):
-	return HttpResponse("7GN_wPd4X1PrCxmqKOrw9sHsAd0_uayFhOnWdEw6Ytc.HrFduo8MJADNQACN38q371h8yDpWwuARiTcP3lgNOOM")
+    return HttpResponse("7GN_wPd4X1PrCxmqKOrw9sHsAd0_uayFhOnWdEw6Ytc.HrFduo8MJADNQACN38q371h8yDpWwuARiTcP3lgNOOM")
 
 def file_b(request):
-	return HttpResponse("Z9DF236bXRfXjvGlUflaI98PMWAKsG9qpGnrDXllb2o.HrFduo8MJADNQACN38q371h8yDpWwuARiTcP3lgNOOM")	
+    return HttpResponse("Z9DF236bXRfXjvGlUflaI98PMWAKsG9qpGnrDXllb2o.HrFduo8MJADNQACN38q371h8yDpWwuARiTcP3lgNOOM")	
 
 
 

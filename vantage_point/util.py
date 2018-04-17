@@ -9,7 +9,6 @@ import traceback
 import time
 import random
 import urllib
-import boto
 
 from django.db.models.base import ObjectDoesNotExist
 from itertools import chain
@@ -46,7 +45,7 @@ def client_get(view):
 def get_or_create_csrf_token(request):
 	token = request.META.get('CSRF_COOKIE', None)
 	if token is None:
-		token = csrf._get_new_csrf_key()
+		token = csrf._get_new_csrf_token()
 		request.META['CSRF_COOKIE'] = token
 	request.META['CSRF_COOKIE_USED'] = True
 	return token
@@ -73,11 +72,8 @@ def get_client_ip(request):
 def renderWithNav(request, template, obj = None, cookies = None):
 	if obj is None:
 		obj = {}	
-	obj['safari'] = False
-#	if not valid_browser(request):
-#		obj['safari'] = True # Strictly here to know whether or not to render the mp4 first or the webm first, since Safari is too retarded
-	obj["csrf"] = get_or_create_csrf_token(request)
 	obj["version"] = timezone.now()
+        obj["csrf"] = get_or_create_csrf_token(request)
 	response = render(request, template, obj)
 	return response
 
@@ -134,4 +130,24 @@ def valid_browser(request):
 	else:
 		return False	
 
+def pretty_request(request):
+    headers = ''
+    for header, value in request.META.items():
+        if not header.startswith('HTTP'):
+            continue
+        header = '-'.join([h.capitalize() for h in header[5:].lower().split('_')])
+        headers += '{}: {}\n'.format(header, value)
 
+    return (
+        '{method} HTTP/1.1\n'
+        'Content-Length: {content_length}\n'
+        'Content-Type: {content_type}\n'
+        '{headers}\n\n'
+        '{body}'
+    ).format(
+        method=request.method,
+        content_length=request.META['CONTENT_LENGTH'],
+        content_type=request.META['CONTENT_TYPE'],
+        headers=headers,
+        body=request.body,
+    )
