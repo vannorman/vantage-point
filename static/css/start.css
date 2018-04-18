@@ -12,7 +12,7 @@ body {
 	margin:0;
 	border:0;
 	background:url('/static/img/pattern.png') repeat;
-	background-size:100%;
+	background-size:80%;
 }
 
 .overlay {
@@ -66,14 +66,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bffaaf28', e
 	border-bottom:2px solid white;
 
 }
+#inner .submit:hover {
+	background-color:#555;
+}
 #inner .submit {
 	position:absolute;
 	top:270px;
 	font-size:12px;
-	padding:10px 35px;
+	padding:10px 55px;
 	background-color:#4c453f;
 	border:2px solid black;
 	color:white;	
+	font-family: 'Open Sans', sans-serif;
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border: 1px solid white;
+
 }
 #inner a, #inner a:visited {
 	text-decoration:none;
