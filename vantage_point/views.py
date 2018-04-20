@@ -39,7 +39,7 @@ def verify_account(request, code):
     for o in verified_user_codes:
 	if o['code'] == code:
 	    response = o['response'] + "|" + str(verified_user_codes)	
-	return HttpResponse(response)
+    return HttpResponse(response)
 
 def verify_code(request):
     if request.method == 'POST':
@@ -58,6 +58,11 @@ def verify_code(request):
 def home(request):
     obj = {}
     return render(request, "home.html", obj)
+
+def survey_pre(request):
+    obj = {}
+    return render(request, "survey_pre.html", obj)
+
 
 
 def start(request):

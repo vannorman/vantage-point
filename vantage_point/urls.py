@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^verifyaccount/(.*)/$', vantage_point.views.verify_account),
     url(r'^verifycode/$', vantage_point.views.verify_code),
     url(r'^start/$', vantage_point.views.start),
+    url(r'^survey/pre/$', vantage_point.views.survey_pre),
 
 ]

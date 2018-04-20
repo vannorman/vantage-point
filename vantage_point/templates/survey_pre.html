@@ -1,0 +1,68 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+{% load static from staticfiles %}
+	<head>
+		<title> Vantage Point - Pre Assessment </title>
+	
+	<meta name="google-site-verification" content="KPrCTIkFg3RCIWPoYvQO3QBnFcEqKflrEQI_6ztrwzE" />
+	{% block styles %}
+		<!-- lol why dis so hard.. arrangement of static, quotes, { % % }, and version|safe -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+		<link rel='stylesheet' href="{% static "css/fonts.css" %}?{{ version|safe }}" type='text/css'>	 
+		<link rel='stylesheet' href="{% static "css/survey_pre.css" %}?{{ version|safe }}" type='text/css'>	 
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,600,800" rel="stylesheet">
+
+
+
+	{% endblock %}
+
+	{% block scripts %}
+		<script src='{% static "js/jquery-1.11.0.min.js" %}'></script>
+		<script src='{% static "js/survey_pre.js" %}'></script>
+		<script>
+			var csrf = "{{csrf}}";
+
+				</script>
+
+
+	{% endblock %}
+	</head>
+
+
+<body>
+	<div id="container">
+		<div id="topLeft">	
+			<div class='overlay'></div>
+				
+		</div>
+		<div id="userInfo">
+			<div class="title">User Info</div>
+			<div class="subtitle">Your responses will be kept private.</div>
+			<div class="inputList">
+				<label class="label" for="org">Organization / Company<span class="asterisk">*</span></label>
+				<input type="text" value="John" />
+				<label class="label" for="age">Age<span class="asterisk">*</span></label>
+			</div>
+
+			<div class="carousel_container">
+				<ul class="carousel">
+				
+				</ul>
+			</div>
+			<div class="requiredLabelTop"><span class="asterisk">* </span>Required</div>
+
+		</div>
+
+		<div id="pre-assessment">
+			<div class="title">
+				Pre Assessment	
+			</div>	
+		</div>		
+	</div>
+	
+</div>
+	<!-- WebGL player requires references to the static Build folder -->
+
+
+</body>
+

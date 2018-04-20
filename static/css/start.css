@@ -1,11 +1,4 @@
 
-@font-face {
-  font-family: 'Gotham-Medium';
-  src: url('/static/fonts/Gotham-Medium.otf') format('opentype');
-  font-weight: bold;
-  font-style: bold;
-}
-
 
 body {
 	padding:0;
