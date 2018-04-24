@@ -61,6 +61,66 @@ def home(request):
 
 def survey_pre(request):
     obj = {}
+    survey_items = [
+        {
+            "number" : 1,
+            "question" : "How transparent do you feel your company's policies are around sexual harassment?",
+            "options" : [1,2,3,4,5],
+            
+        }, { 
+            "number" : 2,
+            "question" : "Does your current corporate climate discourage sexual harassment?",
+            "options" : [1,2,3,4,5],
+            
+        },{ 
+            "number" : 3,
+            "question" : "How gender positive (gender friendly) do you feel your current office culture is?",
+            "options" : [1,2,3,4,5],
+            
+        },{ 
+            "number" : 4,
+            "question" : "What do you feel your current workplace's scale of gender parity is?",
+            "options" : [1,2,3,4,5],
+            
+         },{ 
+            "number" : 5,
+            "display_trigger" : "display_trigger", #jquery hook
+            "display_trigger_elements" : "6,7",
+            "question" : "Have you previously encountered an experience related to sexual harassment where you feel you could have intervened?",
+            "options_class" : "dynamic",
+            "options" : ["YES","NO","Kind of", "I don't know"],
+            
+          },{ 
+            "display_status" : "none",
+            "number" : "6",
+            "question" : "Do you feel you took the right action?",
+            "options_class" : "dynamic",
+            "options" : ["YES","NO","I don't know"],
+            
+          },{ 
+            "display_status" : "none",
+            "number" : "7",
+            "question" : "Do you feel you acted at the appropriate time?",
+            "options_class" : "dynamic",
+            "options" : ["YES","NO", "I don't know"],
+        },{ 
+            "number" : 8,
+            "question" : "How confident do you feel in your ability to determine if a situation might be sexual harassment, and when to intervene?",
+            "options" : [1,2,3,4,5],
+             
+         },{ 
+            "number" : 9,
+            "question" : "How confident do you feel in your ability to know how to intervene if a situation might be sexual harassment?",
+            "options" : [1,2,3,4,5],
+             
+          },{ 
+            "number" : 10,
+            "question" : "What do you feel your level of agency is as a bystander in helping to prevent sexual harassment? (How empowered do you feel in your ability as a bystander to help prevent sexual harassment?",
+            "options" : [1,2,3],
+             
+        }, 
+    ]
+    obj['survey_items'] = survey_items 
     return render(request, "survey_pre.html", obj)
 
 

@@ -30,55 +30,86 @@
 
 
 <body>
+	<div id="topWrapper">
+		<div id="topContainer">	
+			<div id="topLeft">	
+				<div class='overlay'></div>
+					
+			</div>
+			<div id="userInfo">
+				<div class="title">User Info</div>
+				<div class="subtitle">Your responses will be kept private.</div>
+				<div class="inputList">
+					<label class="label" for="org">Organization / Company<span class="asterisk">*</span></label>
+					<input class="name" type="text" value="John" />
+					<label class="age label" for="age">Age<span class="asterisk">*</span></label>
+				</div>
+
+				<div class="carousel_container">
+					<span class="leftFade"></span>
+					<ul class="carousel">
+					
+					</ul>
+					<span class="rightFade"></span>
+				</div>
+				<div class="inputList">
+					
+					<div class="label2" for="gender">Gender<span class="asterisk">*</span></div>
+
+					<div class="multichoice gender">
+						<ul>	
+							<li class="selected"> Male </li>		
+							<li> Female </li>		
+							<li> Other </li>		
+						</ul>
+					</div>
+					<div class="label2" for="gender">Sexual Orientation<span class="asterisk">*</span></div>
+
+					<div class="multichoice sexual-orientation">
+						<ul>	
+							<li class="selected"> Heterosexual </li>		
+							<li> Homosexual </li>		
+							<li> Bisexual </li>		
+							<li> Other </li>		
+						</ul>
+					</div>
+				</div>
+				<div class="requiredLabelTop"><span class="asterisk">* </span>Required</div>
+
+			</div>
+		</div>
+	</div>
 	<div id="container">
-		<div id="topLeft">	
-			<div class='overlay'></div>
-				
-		</div>
-		<div id="userInfo">
-			<div class="title">User Info</div>
-			<div class="subtitle">Your responses will be kept private.</div>
-			<div class="inputList">
-				<label class="label" for="org">Organization / Company<span class="asterisk">*</span></label>
-				<input type="text" value="John" />
-				<label class="label" for="age">Age<span class="asterisk">*</span></label>
-			</div>
-
-			<div class="carousel_container">
-				<ul class="carousel">
-				
-				</ul>
-			</div>
-			<div class="inputList">
-				
-				<div class="label2" for="gender">Gender<span class="asterisk">*</span></div>
-
-				<div class="multichoice gender">
-					<ul>	
-						<li> Male </li>		
-						<li> Female </li>		
-						<li> Other </li>		
-					</ul>
-				</div>
-				<div class="label2" for="gender">Sexual Orientation<span class="asterisk">*</span></div>
-
-				<div class="multichoice sexual-orientation">
-					<ul>	
-						<li> Heterosexual </li>		
-						<li> Homosexual </li>		
-						<li> Bisexual </li>		
-						<li> Other </li>		
-					</ul>
-				</div>
-			</div>
-			<div class="requiredLabelTop"><span class="asterisk">* </span>Required</div>
-
-		</div>
-
 		<div id="pre-assessment">
 			<div class="title">
 				Pre Assessment	
 			</div>	
+			<div class="subtitle">
+				Your responses will be kept private.
+			</div>	
+			<div class="vertical-line"></div>
+
+			{% for item in survey_items %}
+				<div id="{{item.number}}" class="item {{ item.display_trigger }}" style="display:{{ item.display_status }}" display_trigger_elements="{{item.display_trigger_elements}}">
+					<div class="number">{{ item.number }} </div>
+					<div class="question"><span class="red-dot" style="color:red;">• </span>{{ item.question }}</div>
+					<div class="options">
+						<ul>
+							{% for option in item.options %}
+								<li class="{{item.options_class}}"> {{ option }} </li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="scale">
+						<div class="left">NOT AT ALL</div>
+							<div class="red-green-bar"></div>
+						<div class="right">VERY </div>
+
+					</div>
+				</div>
+			{% endfor %}
+		
+
 		</div>		
 	</div>
 	

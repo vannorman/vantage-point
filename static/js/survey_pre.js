@@ -24,21 +24,69 @@ $(document).ready(function(){
 		SelectAge($(this).text());
 	});
 
+
+
+
 	// Gender
-	$('.multichoice ul li').click(function(){
-		$('.multichoice ul li').each(function(){
+	$('.gender ul li').click(function(){
+		$('.gender ul li').each(function(){
 			$(this).removeClass('selected');
 		});
 		$(this).addClass('selected');
 	});
 
+	$('.sexual-orientation ul li').click(function(){
+		$('.sexual-orientation ul li').each(function(){
+			$(this).removeClass('selected');
+		});
+		$(this).addClass('selected');
+	});
+
+	// Any scale select
+	$('#pre-assessment .display_trigger .options ul li').click(function(){
+		var els =$(this).closest('.item').attr('display_trigger_elements').split(',') ;
+		for (el in els){
+			var div = "#"+els[el];
+			var tex =$(this).text().trim();
+			var arr = ["YES","Kind of"];
+			var t = $.inArray($(this).text(),["YES","Kind of"]) ;
+			var flag = $.inArray(tex,arr);
+			console.log('flag:'+flag+", inarr("+tex+","+arr);
+			if (flag > -1){
+				
+				$(div).show();	
+			} else {
+				$(div).hide();	
+			}
+	
+
+		}
+	});
+	$('#pre-assessment .item .options ul li').click(function(){
+		$(this).parent().find('li').each(function(){
+			$(this).removeClass('selected').removeClass('green').removeClass('red');
+		});	
+		$(this).addClass('selected');
+		if (parseInt($(this).text()) in [1,2,'x']){
+			$(this).addClass('red');
+		} else {
+			$(this).addClass('green');
+
+		}
+	});
 	
 });
+
+var cachedMargin = 0; // nimatingToThisMargin
+function minCarouselWidth () {
+	return -2844; // should be calculated based on the margins, li width, and max age ..
+}
 
 var ageWidth = 40;
 var carouselWidth = 40;
 function SelectAge(age){
-	ml = (-(age - min) * ageWidth) + carouselWidth/2 + "px"
-	$('.carousel').animate({marginLeft: ml});
+	var offset = -80;
+	ml = (-(age - min) * ageWidth) + carouselWidth/2 + offset + "px"
+	$('.carousel').animate({marginLeft: ml},250);
 	
 }
