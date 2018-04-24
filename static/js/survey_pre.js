@@ -23,6 +23,15 @@ $(document).ready(function(){
 		$(this).addClass('selected');
 		SelectAge($(this).text());
 	});
+
+	// Gender
+	$('.multichoice ul li').click(function(){
+		$('.multichoice ul li').each(function(){
+			$(this).removeClass('selected');
+		});
+		$(this).addClass('selected');
+	});
+
 	
 });
 
