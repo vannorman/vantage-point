@@ -62,20 +62,48 @@ $(document).ready(function(){
 
 		}
 	});
-	$('#pre-assessment .item .options ul li').click(function(){
-		$(this).parent().find('li').each(function(){
-			$(this).removeClass('selected').removeClass('green').removeClass('red');
-		});	
-		$(this).addClass('selected');
-		if (parseInt($(this).text()) in [1,2,'x']){
-			$(this).addClass('red');
-		} else {
-			$(this).addClass('green');
+//	$('#pre-assessment .item .options ul li.square').click(function(){
+		$('.square').on('click',function(){ 
+			Clicked($(this),'.square');
+			return;
+		});
+		$('.dynamic').on('click',function(){ 
+			Clicked($(this),'.dynamic');
+			return;
+		});
+//			var els =$(this).closest('.item').attr('display_trigger_elements').split(',') ;
+//			$(this).closest('ul').find('.square').each(function(){ 
+//				console.log('removing from:'+$(this).attr('class'));
+//				$(this).removeClass('selected').removeClass('green').removeClass('red');
+//			});	
+//			$(this).addClass('selected');
+//			if (parseInt($(this).text()) in [1,2,'x']){
+//				$(this).addClass('red');
+//			} else {
+//				$(this).addClass('green');
+//
+//			}
+//		});
 
-		}
-	});
-	
 });
+
+function Clicked($this, el){
+	var els =$this.closest('.item').attr('display_trigger_elements').split(',') ;
+	$this.closest('ul').find(el).each(function(){ 
+		$(this).removeClass('selected').removeClass('green').removeClass('red');
+	});	
+	$this.addClass('selected');
+	if (parseInt($this.text()) in [1,2,'x']){
+		$this.addClass('red');
+	} else {
+		$this.addClass('green');
+
+	}
+
+
+
+}
+
 
 var cachedMargin = 0; // nimatingToThisMargin
 function minCarouselWidth () {

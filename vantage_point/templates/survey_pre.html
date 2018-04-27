@@ -96,7 +96,11 @@
 					<div class="options">
 						<ul>
 							{% for option in item.options %}
-								<li class="{{item.options_class}}"> {{ option }} </li>
+								<li class="{{item.options_class}}"> 
+									<div class="{{item.options_class_li}}">
+										{{ option }} 
+									</div>
+								</li>
 							{% endfor %}
 						</ul>
 					</div>

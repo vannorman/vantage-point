@@ -298,12 +298,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8468f5', end
 	color:#333F52;
 }
 #pre-assessment .item  .options ul {
-	
 	list-style-type:none;
+	white-space:nowrap;
 	margin:0; padding:0;
 	margin-top:40px;
 }
-#pre-assessment .item  .options ul li {
+
+.squareContainer {
+
 	display:inline-block;
 	border:1px solid #bbb;
 	border-radius:20px;
@@ -314,27 +316,74 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8468f5', end
 	font-size:45px;
 	color:#ccc;
 	transition: .3s all;
-	
+	overflow:visible;
+	white-space:nowrap;
 }
-#pre-assessment .item  .options ul li.selected {
-	width:130px;
-	height:130px;
-	line-height:130px;
-	margin:5px;
+
+.dynamicContainer, .dynamicContainer2 {
+	display:inline-block;
+	border:1px solid #bbb;
+	border-radius:20px;
+	height:115px;
+	line-height:115px;
+	margin: 20px;
+	font-size:45px;
+	color:#ccc;
+	transition: .3s all;
+	overflow:visible;
+	white-space:nowrap;
+}
+
+.dynamicContainer:first-child, .dynamicContainer2:first-child {
+	/* YES */
+	width:125px;
+}
+.dynamicContainer:nth-child(2), .dynamicContainer2:nth-child(2) {
+	/* NO */
+	width:115px;
+}
+.dynamicContainer:nth-child(3) {
+	/* Kind of */
+	width:215px;
+}
+
+.dynamicContainer:nth-child(4) {
+	/* I don't know */
+	width:295px;
+}
+
+.dynamicContainer2:nth-child(3){
+	/* I don't know */
+	width:295px;
+
+}
+
+.square, .dynamic {
+	display:block;
+	transition: .3s all;
+	border-radius:8px;
+}
+.dynamic.selected {
+	transform: scale(1.2);
+	color:white;
+	padding-left:20px;
+	padding-right:20px;
+	font-weight:bold;
+
+}
+.square.selected { 
+	transform: scale(1.2);
+	margin:0;
 	color:white;
 	font-weight:bold;
 }
-#pre-assessment .item  .options ul li.dynamic {
-	width:auto;
-	padding: 0 25px;
-	border-radius:8px;
-}
 
-#pre-assessment .item  .options ul li.red {
+
+.square.red, .dynamic.red {
 	background-color:#E74C3C;
 
 }
-#pre-assessment .item  .options ul li.green {
+.square.green, .dynamic.green {
 	background-color:#43B963;
 }
 
