@@ -61,15 +61,22 @@ def home(request):
 
 def survey_pre(request):
     obj = {}
+    # This is the format of the questions / data that will be linked to google spreadsheet
+    # current google form in use is https://docs.google.com/spreadsheets/d/1gDoj6csj2vu2vOP3mMgQWwOZ3obktXMO30ZW71r075I/edit#gid=0
+    # Note that it has a script to receive GET data by our survey_pre.js
+    # Note that the form_field_id must exactly match the header columns of the spreadsheet for data to propagate correctly
+
     survey_items = [
         {
             "number" : 1,
+            "form_field_id" : "transparency",
             "question" : "How transparent do you feel your company's policies are around sexual harassment?",
             "options" : [1,2,3,4,5],
             "options_class" : "squareContainer",
             "options_class_li" : "square", 
         }, { 
             "number" : 2,
+            "form_field_id" : "discouragement",
             "question" : "Does your current corporate climate discourage sexual harassment?",
             "options" : [1,2,3,4,5],
             "options_class" : "squareContainer",
@@ -77,6 +84,7 @@ def survey_pre(request):
             
         },{ 
             "number" : 3,
+            "form_field_id" : "genderPositive",
             "question" : "How gender positive (gender friendly) do you feel your current office culture is?",
             "options" : [1,2,3,4,5],
             "options_class" : "squareContainer",
@@ -92,7 +100,7 @@ def survey_pre(request):
          },{ 
             "number" : 5,
             "display_trigger" : "display_trigger", #jquery hook
-            "display_trigger_elements" : "6,7",
+            "display_trigger_elements" : "5a,5b",
             "question" : "Have you previously encountered an experience related to sexual harassment where you feel you could have intervened?",
             "options_class" : "dynamicContainer",
             "options_class_li" : "dynamic", 
@@ -100,7 +108,7 @@ def survey_pre(request):
             
           },{ 
             "display_status" : "none",
-            "number" : "6",
+            "number" : "5a",
             "question" : "Do you feel you took the right action?",
             "options_class" : "dynamicContainer2",
             "options_class_li" : "dynamic", 
@@ -108,27 +116,27 @@ def survey_pre(request):
             
           },{ 
             "display_status" : "none",
-            "number" : "7",
+            "number" : "5b",
             "question" : "Do you feel you acted at the appropriate time?",
             "options_class" : "dynamicContainer2",
             "options_class_li" : "dynamic", 
             "options" : ["YES","NO", "I don't know"],
         },{ 
-            "number" : 8,
+            "number" : 6,
             "question" : "How confident do you feel in your ability to determine if a situation might be sexual harassment, and when to intervene?",
             "options" : [1,2,3,4,5],
             "options_class" : "squareContainer",
             "options_class_li" : "square", 
              
          },{ 
-            "number" : 9,
+            "number" : 7,
             "question" : "How confident do you feel in your ability to know how to intervene if a situation might be sexual harassment?",
             "options" : [1,2,3,4,5],
             "options_class" : "squareContainer",
             "options_class_li" : "square", 
              
           },{ 
-            "number" : 10,
+            "number" : 8,
             "question" : "What do you feel your level of agency is as a bystander in helping to prevent sexual harassment? (How empowered do you feel in your ability as a bystander to help prevent sexual harassment?",
             "options" : [1,2,3],
             "options_class" : "squareContainer",

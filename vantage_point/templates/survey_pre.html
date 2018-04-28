@@ -41,7 +41,7 @@
 				<div class="subtitle">Your responses will be kept private.</div>
 				<div class="inputList">
 					<label class="label" for="org">Organization / Company<span class="asterisk">*</span></label>
-					<input class="name" type="text" value="John" />
+					<input form_field_id="Organization" class="name" type="text" value="" />
 					<label class="age label" for="age">Age<span class="asterisk">*</span></label>
 				</div>
 
@@ -50,6 +50,7 @@
 					<ul class="carousel">
 					
 					</ul>
+					<input type="hidden" form_field_id="Age" id="age_hidden" />
 					<span class="rightFade"></span>
 				</div>
 				<div class="inputList">
@@ -58,7 +59,7 @@
 
 					<div class="multichoice gender">
 						<ul>	
-							<li class="selected"> Male </li>		
+							<li> Male </li>		
 							<li> Female </li>		
 							<li> Other </li>		
 						</ul>
@@ -67,7 +68,7 @@
 
 					<div class="multichoice sexual-orientation">
 						<ul>	
-							<li class="selected"> Heterosexual </li>		
+							<li > Heterosexual </li>		
 							<li> Homosexual </li>		
 							<li> Bisexual </li>		
 							<li> Other </li>		
@@ -104,6 +105,7 @@
 							{% endfor %}
 						</ul>
 					</div>
+					<input type="hidden" class="hidden_form_field" form_field_id="{{item.form_field_id}}" value="" />
 					<div class="scale">
 						<div class="left">NOT AT ALL</div>
 							<div class="red-green-bar"></div>
@@ -113,13 +115,59 @@
 				</div>
 			{% endfor %}
 		
-
+			<div class="acknowledgement">
+				<span class="checkbox"></span>I certify that the above is true and accurate to the best of my ability.<span class="red-dot" style="color:red;">• </span>
+			</div>
+			<div class="sendButton">SEND </div>
 		</div>		
 	</div>
 	
 </div>
 	<!-- WebGL player requires references to the static Build folder -->
 
+<!-- todo: Move this to Base -->
+<div id="footer">
+	<div class="container">	
+		<div class="companyName">
+			VANTAGE POINT
+		</div>
+		<div class="help">
+			Having problems with the web app? <a href="mailto:morgan@tryvantagepoint.com?subject=Help%20With%20Web%20Form"> Contact Us </a>
+		</div>
+	</div>
+</div>
+
+<form id="test-form">
+  
+  <div>
+    <label>Field 1</label>
+    <input type="text" name="form_field_1" placeholder="Field 1"/>
+  </div>
+
+  <div>
+    <label>Field 2</label>
+    <input type="text" name="form_field_2" placeholder="Field 2"/>
+  </div>
+  
+  <div>
+    <label>Field 3</label>
+    <input type="text" name="form_field_3" placeholder="Field 3"/>
+  </div>
+  
+  <div>
+    <label>Field 4</label>
+    <input type="text" name="form_field_4" placeholder="Field 4"/>
+  </div>
+
+  <div>
+    <button type="submit"id="submit-form">Submit</button>
+  </div>
+
+</form>
+
+<form id="serializeExample">
+	<input type="text" id="testInput" value="testValue" />
+</form>
 
 </body>
 
