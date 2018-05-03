@@ -507,6 +507,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4747', end
 .errorMessage {
 	transition: .5s all;
 	background-color:#faa;
+	padding-left:20px;
 	color:white;
 }
 

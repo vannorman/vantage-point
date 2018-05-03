@@ -11,7 +11,7 @@ $(document).ready(function(){
 	carouselWidth = $('.carousel_container').width();
 	for(i=min;i<max;i++){
 		if (i == 31) {
-			SelectAge(31);
+//			SelectAge(31,false); // initiate the age carousel to age 31, but pass "false" so that the hidden field isn't filled.
 			$('.carousel').append("<li class='selected'>"+i+"</li>");
 			
 		} else {
@@ -36,6 +36,7 @@ $(document).ready(function(){
 			$(this).removeClass('selected');
 		});
 		$(this).addClass('selected');
+		UserInputData.UpdateHiddenField('Gender',$(this).text());
 	});
 
 	$('.sexual-orientation ul li').click(function(){
@@ -43,6 +44,7 @@ $(document).ready(function(){
 			$(this).removeClass('selected');
 		});
 		$(this).addClass('selected');
+		UserInputData.UpdateHiddenField('Sexual_Orientation',$(this).text());
 	});
 
 
@@ -94,15 +96,16 @@ $(document).ready(function(){
 		$('#pre-assessment .acknowledgement .checkbox').on('click',function(){
 			if ($(this).hasClass('checked')){
 				$(this).removeClass('checked');
+				$("[form_field_id='acknowledgement']").val("");
 			} else {
 				$(this).addClass('checked');
+				$("[form_field_id='acknowledgement']").val("checked");
 			}
 		})
 
 		// Submit form
 		$('#pre-assessment .sendButton').on('click',function(){
 			SubmitForm();
-			console.log("This question is required.");
 			// use jquery to extract data from each selection
 			// Clear prev errors
 			// This question is required error inject
@@ -125,9 +128,7 @@ function Clicked($this, el){
 	}
 
 	// Set the hidden input value to the value the user selected.
-	console.log('prev val:'+	$this.closest('.item').find(".hidden_form_field").val());
 	$this.closest('.item').find(".hidden_form_field").val($this.text());
-	console.log('new val:'+	$this.closest('.item').find(".hidden_form_field").val());
 
 
 
@@ -151,22 +152,28 @@ function SelectAge(age){
 }
 
 var UserInputData = {
+	UpdateHiddenField : function(formFieldId, newValue){
+		var $el = $("[form_field_id='"+formFieldId+"']");
+		$el.val(newValue);
+	},
+
 	GetFormFieldData : function( formFieldId){
-		console.log('checking:'+formFieldId);
+//		console.log('checking:'+formFieldId);
 		var $el = $("[form_field_id='"+formFieldId+"']");
 		var val = 	$el.val();
-		if (val.length == 0){
+		if (val.length == 0 && $el.attr("data-required") == "true"){
 			this.AppendError($el,formFieldId);
 			if (!errorDueToFieldNotFilled) {
 				// Only scroll to the first error message.
-				$(window).scrollTop($('.errorMessage').offset()['top'] - 150); // snap the window to the error.
+				var errorOffset = 250;
+				$(window).scrollTop($('.errorMessage').offset()['top'] - errorOffset); // snap the window to the error.
 			}	
 			errorDueToFieldNotFilled = true;
 		}
 		return val;
 	}, 
 	AppendError : function($el,formFieldId){
-		$el.after("<div class='errorMessage'>"+formFieldId+": This field is required.</div>");
+		$el.after("<div class='errorMessage'>This field is required.</div>");
 		$('.errorMessage').animate({backgroundColor : "#f0f"}, 2000 ); 
 	
 	},
@@ -188,26 +195,40 @@ function JsonToGet(data){
 }
 
 var errorDueToFieldNotFilled = false;
-
+var submitting = false;
 function SubmitForm(){
-	var url = 'https://script.google.com/macros/s/AKfycbxcPtvV8Fze6MAnPunc4m6jL0dvSoR-jqINBekVRTKNfFR_l5M/exec';
+	if (submitting) {
+		console.log('form submit clicked after already being submitted');
+		return;
+	}
 	errorDueToFieldNotFilled = false;
 	UserInputData.ClearErrors();
 	data = {};
-	userInputDataFields = [
-		'Organization',
-		'genderPositive',
-	]
-	for (i in userInputDataFields){
-		var field = userInputDataFields[i];
+	dataFields.push.apply(dataFields, form_field_ids.split(','));	
+	dataFields.push('acknowledgement');
+	dataFields.push('sessionId');
+	for (i in dataFields){
+		var field = dataFields[i];
 		data[field] = UserInputData.GetFormFieldData(field);
+		
 		if (errorDueToFieldNotFilled) {
+//			console.log('%c error: not filled '+field,'color:red');
 			return false;
+		} else {
+//			console.log('%c filled '+field+' with '+data[field],'color:blue');
+
 		}
 	}
+	data["sheetName"] = sheetName;
 
+	// All "required" form_fill_id elements were completed.
+	// Before making the query to google sheets, indicate to user that form is being submitted.
+	
+	submitting = true;
+	LoadingFx();
 	var serialized = JsonToGet(data);
-
+	console.log('serialized:');
+	console.log(serialized);
 	// Post the data to google forms.
 	var jqxhr = $.ajax({
 		url: url,
@@ -215,10 +236,25 @@ function SubmitForm(){
 		dataType: "json",
 		data: serialized,
 	  }).success(function(){
-		console.log("hha");
+		// If Unity, make sure this lets the new location text be captured by the Browser.OnUrlLoaded function
+		// So that user may continue.
+		//
+		//	For daydream, actually take them to next page. (could be same?)		
+		window.location = completedUrl;
 		// do something
 
-		});
+	});
 }
 
+function LoadingFx(){
+	$('#pre-assessment .sendButton')
+		.text('') 
+		.css('background-color','white')
+		.css('background-position','center')
+		.css('background-size','50%')
+		.css('background-repeat','no-repeat')
+		.css('background-image','url("/static/img/loading.gif")')
+		.animate({'background-size':"17%"},420);
+}
 
+ 

@@ -1,7 +1,7 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 {% load static from staticfiles %}
 	<head>
-		<title> Vantage Point - Pre Assessment </title>
+		<title> Vantage Point - Post Assessment </title>
 	
 	<meta name="google-site-verification" content="KPrCTIkFg3RCIWPoYvQO3QBnFcEqKflrEQI_6ztrwzE" />
 	{% block styles %}
@@ -21,22 +21,12 @@
 		<script>
 			var csrf = "{{csrf}}";
 			var form_field_ids = "{{form_field_ids}}";
-//			var url = 'https://script.google.com/macros/s/AKfycbxcPtvV8Fze6MAnPunc4m6jL0dvSoR-jqINBekVRTKNfFR_l5M/exec';
 			var url = 'https://script.google.com/macros/s/AKfycbxix0W5oT4Gi2Po1S4GEj0_bfC0QRiFcjAj-QXmF5PidgmmqdI/exec';
-			var sheetName = "PRE";
-
-			// The following "info" data collected at the top of pre-survey form
-			dataFields = [];
-			dataFields.push.apply(dataFields, [
-				'Organization',
-				'Age',
-				'Gender',
-				'Sexual_Orientation',
-			]);
-			var completedUrl = "/pre/complete/"
+			var sheetName = "POST";
+			dataFields = []; 
+	
 
 		</script>
-
 		<script src='{% static "js/survey_pre.js" %}'></script>
 
 
@@ -52,57 +42,12 @@
 				<div class='overlay'></div>
 					
 			</div>
-			<div id="userInfo">
-				<div class="title">User Info</div>
-				<div class="subtitle">Your responses will be kept private.</div>
-				<div class="inputList">
-					<label class="label" for="org">Organization / Company<span class="asterisk">*</span></label>
-					<input form_field_id="Organization" data-required="true" class="name" type="text" value="" />
-					<label class="age label" for="age">Age<span class="asterisk">*</span></label>
-				</div>
-
-				<div class="carousel_container">
-					<span class="leftFade"></span>
-					<ul class="carousel">
-					
-					</ul>
-					<input type="hidden" form_field_id="Age" data-required="true" id="age_hidden" />
-					<span class="rightFade"></span>
-				</div>
-				<div class="inputList">
-					
-					<div class="label2" for="gender">Gender<span class="asterisk">*</span></div>
-
-					<div class="multichoice gender">
-						<ul>	
-							<li> Male </li>		
-							<li> Female </li>		
-							<li> Other </li>		
-						</ul>
-						<input type="hidden" form_field_id="Gender" data-required="true" />
-							
-					</div>
-					<div class="label2" for="gender">Sexual Orientation<span class="asterisk">*</span></div>
-
-					<div class="multichoice sexual-orientation">
-						<ul>	
-							<li > Heterosexual </li>		
-							<li> Homosexual </li>		
-							<li> Bisexual </li>		
-							<li> Other </li>		
-						</ul>
-						<input type="hidden" form_field_id="Sexual_Orientation" data-required="true" />
-					</div>
-				</div>
-				<div class="requiredLabelTop"><span class="asterisk">* </span>Required</div>
-
-			</div>
 		</div>
 	</div>
 	<div id="container">
 		<div id="pre-assessment">
 			<div class="title">
-				Pre Assessment	
+				Post Assessment	
 			</div>	
 			<div class="subtitle">
 				Your responses will be kept private.
