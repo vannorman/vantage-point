@@ -2,10 +2,14 @@ $(document).ready(function(){
 	// CSS doesn't work for last-child so doing it manually using JQuery. . lol
 	$('.item').last().css('margin-bottom','60px')
 
+	// When you click on "name" or "organization" it should select the existing text (if any)
 	$('input').on('click',function(){
 		$(this).focus();
 		$(this).select();
 	});
+
+
+	// Age
 	min=18;
 	max=99;
 	carouselWidth = $('.carousel_container').width();
@@ -39,6 +43,8 @@ $(document).ready(function(){
 		UserInputData.UpdateHiddenField('Gender',$(this).text());
 	});
 
+
+	// Sexual Orientation
 	$('.sexual-orientation ul li').click(function(){
 		$('.sexual-orientation ul li').each(function(){
 			$(this).removeClass('selected');
@@ -50,7 +56,9 @@ $(document).ready(function(){
 
 	
 
-	// Any scale select
+	// Pre Assessment
+
+	// Some questions will show or hide subsequent questions depending on your answer.
 	$('#pre-assessment .display_trigger .options ul li').click(function(){
 		var els =$(this).closest('.item').attr('display_trigger_elements').split(',') ;
 		for (el in els){
@@ -61,61 +69,46 @@ $(document).ready(function(){
 			var flag = $.inArray(tex,arr);
 			console.log('flag:'+flag+", inarr("+tex+","+arr);
 			if (flag > -1){
-				$(div).show();	
+				$(div).fadeIn();	
 			} else {
-				$(div).hide();	
+				$(div).fadeOut();	
 			}
 		}
 		
 
 	});
-//	$('#pre-assessment .item .options ul li.square').click(function(){
-		$('.square').on('click',function(){ 
-			Clicked($(this),'.square');
-			return;
-		});
-		$('.dynamic').on('click',function(){ 
-			Clicked($(this),'.dynamic');
-			return;
-		});
-//			var els =$(this).closest('.item').attr('display_trigger_elements').split(',') ;
-//			$(this).closest('ul').find('.square').each(function(){ 
-//				console.log('removing from:'+$(this).attr('class'));
-//				$(this).removeClass('selected').removeClass('green').removeClass('red');
-//			});	
-//			$(this).addClass('selected');
-//			if (parseInt($(this).text()) in [1,2,'x']){
-//				$(this).addClass('red');
-//			} else {
-//				$(this).addClass('green');
-//
-//			}
-//		});
-//
-//
-		$('#pre-assessment .acknowledgement .checkbox').on('click',function(){
-			if ($(this).hasClass('checked')){
-				$(this).removeClass('checked');
-				$("[form_field_id='acknowledgement']").val("");
-			} else {
-				$(this).addClass('checked');
-				$("[form_field_id='acknowledgement']").val("checked");
-			}
-		})
 
-		// Submit form
-		$('#pre-assessment .sendButton').on('click',function(){
-			SubmitForm();
-			// use jquery to extract data from each selection
-			// Clear prev errors
-			// This question is required error inject
-			// Assemble JS object
-			// Post to Google web form eg https://medium.com/@dmccoy/how-to-submit-an-html-form-to-google-sheets-without-google-forms-b833952cc175
-		});
+
+	// Detect clicks on either scale [1,2,3,4,5] or dynamic [YES,NO,Kind of] options
+	$('.square').on('click',function(){ 
+		Clicked($(this),'.square');
+		return;
+	});
+	$('.dynamic').on('click',function(){ 
+		Clicked($(this),'.dynamic');
+		return;
+	});
+
+	// Acknowledgement
+	$('#pre-assessment .acknowledgement .checkbox').on('click',function(){
+		if ($(this).hasClass('checked')){
+			$(this).removeClass('checked');
+			$("[form_field_id='acknowledgement']").val("");
+		} else {
+			$(this).addClass('checked');
+			$("[form_field_id='acknowledgement']").val("checked");
+		}
+	})
+
+	// Submit form
+	$('#pre-assessment .sendButton').on('click',function(){
+		SubmitForm();
+		// followed this method: 
+		// https://medium.com/@dmccoy/how-to-submit-an-html-form-to-google-sheets-without-google-forms-b833952cc175
+	});
 });
 
 function Clicked($this, el){
-	var els =$this.closest('.item').attr('display_trigger_elements').split(',') ;
 	$this.closest('ul').find(el).each(function(){ 
 		$(this).removeClass('selected').removeClass('green').removeClass('red');
 	});	
@@ -124,23 +117,17 @@ function Clicked($this, el){
 		$this.addClass('red');
 	} else {
 		$this.addClass('green');
-
 	}
 
 	// Set the hidden input value to the value the user selected.
 	$this.closest('.item').find(".hidden_form_field").val($this.text());
-
-
-
-
 }
 
-
-var cachedMargin = 0; // nimatingToThisMargin
+// Age
+var cachedMargin = 0; // animatingToThisMargin
 function minCarouselWidth () {
 	return -2844; // should be calculated based on the margins, li width, and max age ..
 }
-
 var ageWidth = 40;
 var carouselWidth = 40;
 function SelectAge(age){
@@ -150,6 +137,8 @@ function SelectAge(age){
 	$('#age_hidden').val(age);
 	
 }
+
+
 
 var UserInputData = {
 	UpdateHiddenField : function(formFieldId, newValue){
@@ -164,7 +153,7 @@ var UserInputData = {
 		if (val.length == 0 && $el.attr("data-required") == "true"){
 			this.AppendError($el,formFieldId);
 			if (!errorDueToFieldNotFilled) {
-				// Only scroll to the first error message.
+				// Only scroll to the first error message. Remove this if to show ALL error messages at once (can be lots of red)
 				var errorOffset = 250;
 				$(window).scrollTop($('.errorMessage').offset()['top'] - errorOffset); // snap the window to the error.
 			}	
@@ -185,7 +174,7 @@ var UserInputData = {
 	
 }
 
-function JsonToGet(data){
+function SerializeJson(data){
 	var serialized = ""
 	for (var key in data){
 		serialized += key + "=" + data[key].toString() + "&";
@@ -194,8 +183,8 @@ function JsonToGet(data){
 	
 }
 
-var errorDueToFieldNotFilled = false;
-var submitting = false;
+var errorDueToFieldNotFilled = false; // clumsy way to detect error ..
+var submitting = false; // prevent multiple submit
 function SubmitForm(){
 	if (submitting) {
 		console.log('form submit clicked after already being submitted');
@@ -226,9 +215,10 @@ function SubmitForm(){
 	
 	submitting = true;
 	LoadingFx();
-	var serialized = JsonToGet(data);
-	console.log('serialized:');
-	console.log(serialized);
+
+	// Serialize the json object we constructed from user inputs for a GET request to Google Sheets
+	var serialized = SerializeJson(data);
+	
 	// Post the data to google forms.
 	var jqxhr = $.ajax({
 		url: url,
@@ -241,7 +231,6 @@ function SubmitForm(){
 		//
 		//	For daydream, actually take them to next page. (could be same?)		
 		window.location = completedUrl;
-		// do something
 
 	});
 }
