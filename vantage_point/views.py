@@ -29,9 +29,9 @@ def simple_page(template):
 verified_user_codes = []
 verified_user_codes.extend([
     {'code':'b0ss', 'response' : 'OK', 'expire' : 'none'},
-    {'code':'RaiseTheBar', 'response' : 'OK_SKIP', 'user' : 'RipStandard', 'expire' : '04/09/2018 + 30'},
-    {'code':'GoldStandard', 'response' : 'OK_SKIP', 'user' : 'Within', 'expire' : '04/09/2018 + 30'},
-    {'code':'NewFrontier', 'response' : 'OK', 'user' : 'Felicity', 'expire' : '05/03/2018 + 7'},
+    {'code':'RaiseTheBar', 'response' : 'OK', 'user' : 'RipStandard', 'expire' : '04/09/2018 + 30'},
+    {'code':'GoldStandard', 'response' : 'OK', 'user' : 'Within', 'expire' : '04/09/2018 + 30'},
+    {'code':'NewFrontier', 'response' : 'OK', 'user' : 'Fidelity', 'expire' : '05/03/2018 + 7'},
 ])
 	
 def verify_account(request, code):
