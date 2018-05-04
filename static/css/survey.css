@@ -258,7 +258,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4747', end
 }
 
 #pre-assessment .sendButton {
-	font-family:Avenir-Light;
+	font-family:Avenir; /* note Avenir-Light breaks with ZF browser in Unity */
 	width:300px;
 	height:51px;
 	color:white;
