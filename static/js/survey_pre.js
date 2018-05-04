@@ -1,4 +1,14 @@
 $(document).ready(function(){
+	$('#testSend').on('click',function(){
+		$("[form_field_id]").each(function(){ 
+			if ($(this).attr('form_field_id') != "sessionId"){
+				$(this).val('test'); 
+
+			}
+		});	
+		SubmitForm();
+	});
+
 	// CSS doesn't work for last-child so doing it manually using JQuery. . lol
 	$('.item').last().css('margin-bottom','60px')
 
